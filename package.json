@@ -11,16 +11,30 @@
     "webpack": "webpack -w",
     "test": "jest --watch",
     "verify-tests": "jest --coverage",
-    "build-webpack": "webpack --optimization-minimize"
+    "build-webpack": "webpack --optimization-minimize",
+    "build-node": "babel lib -d build --copy-files"
   },
   "babel": {
     "presets": [
       "@babel/preset-react",
-      "@babel/preset-env"
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-object-rest-spread"
     ]
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^8.20.0",
